@@ -1,4 +1,3 @@
-import 'package:dw9_delivery_app/app/core/config/env/env.dart';
 import 'package:dw9_delivery_app/app/core/helpers/size_extension.dart';
 import 'package:dw9_delivery_app/app/core/ui/widgets/delivery_button.dart';
 import 'package:flutter/material.dart';
@@ -9,23 +8,45 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Splash'),
-      ),
-      body: Column(
-        children: [
-          Container(),
-          DeliveryButton(
-            label: Env.i['backend_base_url'] ?? '',
-            onPressed: () {},
-            width: 200,
-          ),
-          Text(context.screenWidth.toString()),
-          const SizedBox(
-            height: 8,
-          ),
-          TextFormField(),
-        ],
+      body: ColoredBox(
+        color: const Color(0xFF140E0E),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                width: context.screenWidth,
+                child: Image.asset(
+                  'assets/images/lanche.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Center(
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: context.percentHeight(.3),
+                    ),
+                    Image.asset('assets/images/logo.png'),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    DeliveryButton(
+                      width: context.percentWidth(.6),
+                      label: 'ACESSAR',
+                      height: 35,
+                      onPressed: () {
+                        Navigator.of(context).popAndPushNamed('/home');
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
